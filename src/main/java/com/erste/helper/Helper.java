@@ -10,7 +10,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,9 +43,16 @@ public class Helper {
         //return destPath;
     }
 
-    public static String getValue(String valueFor) throws Exception{
+    public static String getValue(String whichfile,String valueFor) throws Exception{
         Properties properties=new Properties();
-        FileInputStream fileInputStream=new FileInputStream("src/main/resources/config.properties");
+        FileInputStream fileInputStream;
+        if(whichfile.equalsIgnoreCase("testdata")) {
+            fileInputStream = new FileInputStream("src/main/resources/testData.properties");
+        }
+        else{
+            fileInputStream = new FileInputStream("src/main/resources/deviceDetails.properties");
+        }
+
         properties.load(fileInputStream);
         return properties.getProperty(valueFor);
 
@@ -68,9 +74,18 @@ public class Helper {
     }
 
 
+
+
+
    public void tap(WebElement element){
        TouchAction touchAction=new TouchAction((PerformsTouchActions) DriverConfig.getInstance().getDriver());
-       touchAction.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(element)).withDuration(Duration.ofSeconds(2))).release().perform();
+       touchAction.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(element)).withDuration(Duration.ofSeconds(1))).release().perform();
+   }
+
+   public double getThePrice(String price){
+       String[] prices= price.split("\\$");
+       String price1 = prices[1];
+       return Double.parseDouble(price1);
    }
 
 
@@ -96,6 +111,12 @@ public class Helper {
     public void clickWithoutWaitingForElement(WebElement element){
 
         element.click();
+
+    }
+
+    public String getText(WebElement element){
+        wait = new WebDriverWait(driver,30);
+       return wait.until(ExpectedConditions.visibilityOf(element)).getText();
 
     }
 
