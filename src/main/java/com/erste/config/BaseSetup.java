@@ -110,8 +110,8 @@ public WebViewPageLocators webViewPageLocators;
             helper.getScreenShot(result.getMethod().getMethodName());
 
         }
-//        String status = result.isSuccess() ? "passed" : "failed";
-//        driver.executeScript("sauce:job-result=" + status);
+        String status = result.isSuccess() ? "passed" : "failed";
+        driver.executeScript("sauce:job-result=" + status);
 
         driver.quit();
     }
