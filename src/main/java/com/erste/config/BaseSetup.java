@@ -1,7 +1,7 @@
 package com.erste.config;
 
 import com.erste.helper.Helper;
-import com.erste.pageobjects.HomePageLocators;
+import com.erste.pageobjects.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -25,6 +25,14 @@ public class BaseSetup{
 
 public Helper helper;
 public HomePageLocators homePageLocators;
+public AddToCartPageLocators addToCartLocators;
+public CheckoutpageLocators checkoutpageLocators;
+public Loginpagelocators loginpagelocators;
+public ShippingAddressPageLocators shippingAddressPageLocators;
+public PaymentMethodPageLocators paymentMethodPageLocators;
+public OrderReviewPageLocators orderReviewPageLocators;
+public CheckoutCompletePageLocators checkoutCompletePageLocators;
+public WebViewPageLocators webViewPageLocators;
 
 
     @BeforeMethod(alwaysRun = true)
@@ -62,13 +70,23 @@ public HomePageLocators homePageLocators;
 
         helper=new Helper(driver);
         homePageLocators=new HomePageLocators(driver);
+        addToCartLocators=new AddToCartPageLocators(driver);
+        checkoutpageLocators=new CheckoutpageLocators(driver);
+        loginpagelocators=new Loginpagelocators(driver);
+        shippingAddressPageLocators=new ShippingAddressPageLocators(driver);
+        paymentMethodPageLocators=new PaymentMethodPageLocators(driver);
+        orderReviewPageLocators=new OrderReviewPageLocators(driver);
+        checkoutpageLocators=new CheckoutpageLocators(driver);
+        checkoutCompletePageLocators=new CheckoutCompletePageLocators(driver);
+        webViewPageLocators=new WebViewPageLocators(driver);
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws IOException {
-        Helper helper=new Helper(this.driver);
+        Helper helper=new Helper(driver);
         if (ITestResult.FAILURE == result.getStatus()) {
             helper.getScreenShot(result.getMethod().getMethodName());
+
         }
 
         driver.quit();

@@ -34,19 +34,8 @@ public class Listeners extends BaseSetup implements ITestListener {
 
     public void onTestFailure(ITestResult result) {
         threadLocal.get().fail(result.getThrowable());
+        test.addScreenCaptureFromPath("reports/");
 
-
-    }
-
-    public void onTestSkipped(ITestResult iTestResult) {
-        threadLocal.get().skip(iTestResult.getThrowable());
-    }
-
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
-    }
-
-    public void onStart(ITestContext iTestContext) {
 
     }
 
