@@ -50,45 +50,43 @@ public WebViewPageLocators webViewPageLocators;
         this.packageName = properties.getProperty("apppackage");
         this.activityName=properties.getProperty("activityname");
 
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        capabilities.setCapability("automationName", "uiautomator2");
+        capabilities.setCapability("deviceName", this.deviceName);
+        capabilities.setCapability("udid", this.deviceName);
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("platformVersion", this.platformVersion);
+        capabilities.setCapability("adbExecTimeout", 50000);
+        capabilities.setCapability("newCommandTimeout", "120000");
+        capabilities.setCapability("systemPort", "8200");
+        capabilities.setCapability("appPackage", this.packageName);
+        capabilities.setCapability("--session-override", true);
+        capabilities.setCapability("noReset", true);
+        capabilities.setCapability("fullReset", false);
+        capabilities.setCapability("appActivity", this.activityName);
+        //capabilities.setCapability("app", appPath);
+        this.driver = DriverConfig.getInstance().setDriver(new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities));
+        this.driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+
+
+
 //
-//        capabilities.setCapability("automationName", "uiautomator2");
-//        capabilities.setCapability("deviceName", this.deviceName);
-//        capabilities.setCapability("udid", this.deviceName);
-//        capabilities.setCapability("platformName", "Android");
-//        capabilities.setCapability("platformVersion", this.platformVersion);
-//        capabilities.setCapability("adbExecTimeout", 50000);
-//        capabilities.setCapability("newCommandTimeout", "120000");
-//        capabilities.setCapability("systemPort", "8200");
-//        capabilities.setCapability("appPackage", this.packageName);
-//        capabilities.setCapability("--session-override", true);
-//        capabilities.setCapability("noReset", true);
-//        capabilities.setCapability("fullReset", false);
-//        capabilities.setCapability("appActivity", this.activityName);
-//        //capabilities.setCapability("app", appPath);
-//        this.driver = DriverConfig.getInstance().setDriver(new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities));
-//        this.driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
-
-
-
-
-        MutableCapabilities caps = new MutableCapabilities();
-        caps.setCapability("platformName","Android");
-        caps.setCapability("appium:deviceName","Google Pixel 6 Pro GoogleAPI Emulator");
-        caps.setCapability("appium:deviceOrientation", "portrait");
-        caps.setCapability("appium:platformVersion","12.0");
-        caps.setCapability("appium:automationName", "UiAutomator2");
-        caps.setCapability("appium:app", "storage:filename=mda-1.0.13-docs-16.apk");
-        caps.setCapability("appPackage", this.packageName);
-        caps.setCapability("appActivity", this.activityName);
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("build", "build4");
-        sauceOptions.setCapability("name", "tests");
-        caps.setCapability("sauce:options", sauceOptions);
-       // URL url = new URL("https://oauth-subhist.sauces-1d435:*****31bd@ondemand.eu-central-1.saucelabs.com:443/wd/hub");
-       // this.driver = new AndroidDriver(url, caps);
-        this.driver = DriverConfig.getInstance().setDriver(new AndroidDriver(new URL("https://oauth-subhist.sauces-1d435:cd305ca0-e230-4e69-9b1d-2c3e4a0931bd@ondemand.eu-central-1.saucelabs.com:443/wd/hub"), caps));
-       // this.driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+//        MutableCapabilities caps = new MutableCapabilities();
+//        caps.setCapability("platformName","Android");
+//        caps.setCapability("appium:deviceName","Google Pixel 6 Pro GoogleAPI Emulator");
+//        caps.setCapability("appium:deviceOrientation", "portrait");
+//        caps.setCapability("appium:platformVersion","12.0");
+//        caps.setCapability("appium:automationName", "UiAutomator2");
+//        caps.setCapability("appium:app", "storage:filename=mda-1.0.13-docs-16.apk");
+//        caps.setCapability("appPackage", this.packageName);
+//        caps.setCapability("appActivity", this.activityName);
+//        MutableCapabilities sauceOptions = new MutableCapabilities();
+//        sauceOptions.setCapability("build", "build4");
+//        sauceOptions.setCapability("name", "tests");
+//        caps.setCapability("sauce:options", sauceOptions);
+//        this.driver = DriverConfig.getInstance().setDriver(new AndroidDriver(new URL("https://oauth-subhist.sauces-1d435:cd305ca0-e230-4e69-9b1d-2c3e4a0931bd@ondemand.eu-central-1.saucelabs.com:443/wd/hub"), caps));
+//
 
         helper=new Helper(driver);
         homePageLocators=new HomePageLocators(driver);
@@ -110,8 +108,8 @@ public WebViewPageLocators webViewPageLocators;
             helper.getScreenShot(result.getMethod().getMethodName());
 
         }
-        String status = result.isSuccess() ? "passed" : "failed";
-        driver.executeScript("sauce:job-result=" + status);
+//        String status = result.isSuccess() ? "passed" : "failed";
+//        driver.executeScript("sauce:job-result=" + status);
 
         driver.quit();
     }
