@@ -70,6 +70,7 @@ public WebViewPageLocators webViewPageLocators;
         this.driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
 
 
+        //sauce labs capabilities
 
 //
 //        MutableCapabilities caps = new MutableCapabilities();
@@ -86,7 +87,7 @@ public WebViewPageLocators webViewPageLocators;
 //        sauceOptions.setCapability("name", "tests");
 //        caps.setCapability("sauce:options", sauceOptions);
 //        this.driver = DriverConfig.getInstance().setDriver(new AndroidDriver(new URL("https://oauth-subhist.sauces-1d435:cd305ca0-e230-4e69-9b1d-2c3e4a0931bd@ondemand.eu-central-1.saucelabs.com:443/wd/hub"), caps));
-//
+
 
         helper=new Helper(driver);
         homePageLocators=new HomePageLocators(driver);
@@ -108,6 +109,8 @@ public WebViewPageLocators webViewPageLocators;
             helper.getScreenShot(result.getMethod().getMethodName());
 
         }
+
+        //sauce labs test case status updates
 //        String status = result.isSuccess() ? "passed" : "failed";
 //        driver.executeScript("sauce:job-result=" + status);
 

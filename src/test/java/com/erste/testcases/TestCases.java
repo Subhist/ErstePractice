@@ -11,6 +11,8 @@ public class TestCases extends BaseSetup {
     SoftAssert softAssert=new SoftAssert();
 
 
+
+    //Rating a product
     @Test(priority = 1)
     public void rateAProduct() throws Exception{
 
@@ -27,6 +29,7 @@ public class TestCases extends BaseSetup {
     }
 
 
+    //Purchasing a Product
     @Test(priority = 2)
     public void placeOrder() throws Exception {
 
@@ -67,6 +70,8 @@ public class TestCases extends BaseSetup {
         softAssert.assertAll();
     }
 
+
+    //verifying the footer links
     @Test(priority = 3)
     public void verifySocialLinks(){
 
@@ -85,6 +90,7 @@ public class TestCases extends BaseSetup {
 
 
 
+    //visiting a website
     @Test(priority = 4)
     public void goToAWebSite() throws Exception{
 
@@ -100,6 +106,7 @@ public class TestCases extends BaseSetup {
 
     }
 
+    //sorting the product based on ascending order of the price
     @Test(priority = 5)
     public void sortProductsOnPrice() throws Exception{
 

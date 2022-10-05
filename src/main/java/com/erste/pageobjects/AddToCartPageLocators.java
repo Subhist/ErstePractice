@@ -157,6 +157,8 @@ public class AddToCartPageLocators {
         this.fiveStarRating = fiveStarRating;
     }
 
+
+
     public void addToCart(){
         helper.click(getAddToCartButton());
     }

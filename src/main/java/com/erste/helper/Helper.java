@@ -38,9 +38,6 @@ public class Helper {
         String fileName = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").format(new Date());
         FileUtils.copyFile(screen, new File("./reports/"+fileName+""+testCasesName+".png"));
 
-
-        //  FileUtils.copyFile(source, new File(System.getProperty("user.dir")+"/reports/"+testCasesName+".png") );
-        //return destPath;
     }
 
     public static String getValue(String whichfile,String valueFor) throws Exception{
